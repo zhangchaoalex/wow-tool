@@ -9,7 +9,7 @@ Global $mainLabel
 Global $BtnAdd
 Global $BtnGua
 
-Global $mainTitle="Î´ÉèÖÃ"
+Global $mainTitle="æœªè®¾ç½®"
 Global $mainHander=-1
 
 Global $isStart=false
@@ -37,21 +37,21 @@ OnAutoItExitRegister("OnAutoItExit")
 ;/target wuwenfu
 ;/follow
 ;/target targettarget
-;/cast ÃÍÇİÒ»»÷(µÈ¼¶ 1)
+;/cast çŒ›ç¦½ä¸€å‡»(ç­‰çº§ 1)
 
 ;===========================================================
 ;nCode
-;Ğ¡ÓÚ0·µ»ØCallNextHookEx
+;å°äº0è¿”å›CallNextHookEx
 
 ;wParam
-;ÏûÏ¢: WM_KEYDOWN, WM_KEYUP, WM_SYSKEYDOWN, WM_SYSKEYUP
+;æ¶ˆæ¯: WM_KEYDOWN, WM_KEYUP, WM_SYSKEYDOWN, WM_SYSKEYUP
 
 ;lParam
-;KBDLLHOOKSTRUCT½á¹¹Ö¸Õë
+;KBDLLHOOKSTRUCTç»“æ„æŒ‡é’ˆ
 
 ;Return
-;Èç¹û¹³×Ó¹ı³ÌÃ»ÓĞ´¦ÀíÏûÏ¢,·µ»ØCallNextHookEx
-;Èç¹û¹³×Ó¹ı³Ì´¦ÀíµÄÏûÏ¢,·µ»ØÒ»¸ö·ÇÁãÖµÀ´·ÀÖ¹ÏµÍ³´«µİÏûÏ¢¸øÆäÓàµÄ¹³Á´»òÄ¿±ê´°¿Ú
+;å¦‚æœé’©å­è¿‡ç¨‹æ²¡æœ‰å¤„ç†æ¶ˆæ¯,è¿”å›CallNextHookEx
+;å¦‚æœé’©å­è¿‡ç¨‹å¤„ç†çš„æ¶ˆæ¯,è¿”å›ä¸€ä¸ªéé›¶å€¼æ¥é˜²æ­¢ç³»ç»Ÿä¼ é€’æ¶ˆæ¯ç»™å…¶ä½™çš„é’©é“¾æˆ–ç›®æ ‡çª—å£
 ;===========================================================
 Func LowLevelKeyboardProc($nCode, $wParam, $lParam)
 	If $nCode < 0 Then Return _WinAPI_CallNextHookEx($hHook, $nCode, $wParam, $lParam)
@@ -70,28 +70,28 @@ Func LowLevelKeyboardProc($nCode, $wParam, $lParam)
    For $i = 1 to $itemHanders[0] Step 1
 		  $hWnd = $itemHanders[$i]
 		  if  $hWnd <> $mainHander then
-					;ToolTip("debug: ·¢ËÍµÄ´°Ìå " & $mainHander & " Ö÷´°Ìå" & $hWnd)
+					;ToolTip("debug: å‘é€çš„çª—ä½“ " & $mainHander & " ä¸»çª—ä½“" & $hWnd)
 
 				  Switch $wParam
 						  Case $WM_KEYDOWN
-							  ;ToolTip("°´¼ü°´ÏÂ: (" & $iCode & ")")
+							  ;ToolTip("æŒ‰é”®æŒ‰ä¸‹: (" & $iCode & ")")
 							  If $iCode <> 65 and $iCode <> 87 and $iCode <> 83 and $iCode <>68 Then
 								 _WinAPI_PostMessage($hWnd,$wParam, $iCode,0)
 							  endIf
 
 						  Case $WM_KEYUP
-							  ;ToolTip("°´¼üÌ§Æğ: (" & $iCode & ")")
+							  ;ToolTip("æŒ‰é”®æŠ¬èµ·: (" & $iCode & ")")
 							  If $iCode <> 65 and $iCode <> 87 and $iCode <> 83 and $iCode <>68 Then
 								 _WinAPI_PostMessage($hWnd,$wParam, $iCode,0)
 							  endIf
 
 						  Case $WM_SYSKEYDOWN
-							  ;ToolTip("ÏµÍ³°´¼ü°´ÏÂ: (" & $iCode & ")")
+							  ;ToolTip("ç³»ç»ŸæŒ‰é”®æŒ‰ä¸‹: (" & $iCode & ")")
 						  Case $WM_SYSKEYUP
-							  ;ToolTip("ÏµÍ³°´¼üÌ§Æğ: (" & $iCode & ")")
+							  ;ToolTip("ç³»ç»ŸæŒ‰é”®æŠ¬èµ·: (" & $iCode & ")")
 						  Case Else
 							  ConsoleWrite($wParam & @CRLF)
-							  ;ToolTip("ÆäËûÏûÏ¢: (" & $wParam & ")")
+							  ;ToolTip("å…¶ä»–æ¶ˆæ¯: (" & $wParam & ")")
 					  EndSwitch
 
 
@@ -119,12 +119,12 @@ EndFunc
  ; ----- GUIs
 Func MainGUI()
   Global $listview
-  $listGUI = GUICreate("Ä§ÊŞÊÀ½çÖúÊÖ", 400, 400, 100, 200, -1)
+  $listGUI = GUICreate("é­”å…½ä¸–ç•ŒåŠ©æ‰‹", 400, 400, 100, 200, -1)
   GUISetOnEvent($GUI_EVENT_CLOSE, "On_Close_Main")
-  $listview = GUICtrlCreateListView("Ä§ÊŞÓÎÏ·´°¿ÚÁĞ±í", 10, 10, 400, 150)
+  $listview = GUICtrlCreateListView("é­”å…½æ¸¸æˆçª—å£åˆ—è¡¨", 10, 10, 400, 150)
   _GUICtrlListView_SetColumnWidth($listview, 0, $LVSCW_AUTOSIZE_USEHEADER )
 
-	Local $aList = WinList("[TITLE:Ä§ÊŞÊÀ½ç; CLASS:GxWindowClass;]")
+	Local $aList = WinList("[TITLE:é­”å…½ä¸–ç•Œ; CLASS:GxWindowClass;]")
 	;GxWindowClass
 	;Local $aList = WinList("[CLASS:GxWindowClassD3d]", "")
 
@@ -144,27 +144,27 @@ Func MainGUI()
 
 
 
-  Global $BtnAdd = GUICtrlCreateButton("Æô¶¯¶à¿ª", 10, 165, 80, 30)
+  Global $BtnAdd = GUICtrlCreateButton("å¯åŠ¨å¤šå¼€", 10, 165, 80, 30)
   GUICtrlSetOnEvent($BtnAdd, "Addi")
 
-  Global $BtnGua = GUICtrlCreateButton("Æô¶¯¹Ò»ú", 10, 165+30+10, 80, 30)
+  Global $BtnGua = GUICtrlCreateButton("å¯åŠ¨æŒ‚æœº", 10, 165+30+10, 80, 30)
 GUICtrlSetOnEvent($BtnGua, "Guai")
 
 
-  $BtnSelect = GUICtrlCreateButton("ÉèÖÃÖ÷´°Ìå", 100, 165, 80, 30)
+  $BtnSelect = GUICtrlCreateButton("è®¾ç½®ä¸»çª—ä½“", 100, 165, 80, 30)
   GUICtrlSetOnEvent($BtnSelect, "SelectItem")
 
-  $mainLabel = GUICtrlCreateLabel( "Ö÷´°Ìå:"& $mainTitle, 190, 165+10, 300, 30)
+  $mainLabel = GUICtrlCreateLabel( "ä¸»çª—ä½“:"& $mainTitle, 190, 165+10, 300, 30)
 
 
-   $myedit=GUICtrlCreateEdit("±¾Èí¼ş¿ÉÒÔÊµÏÖ¶à¿ªÄ§ÊŞÊÀ½ç,ÊµÏÖÍ¬Ê±Á·¼¶¹¦ÄÜ¡£"& @CRLF & "¾ßÌåÎÄµµ: https://www.yuque.com/u293649/hpg76f "& @CRLF & "×÷Õß: ÎåÇø-ÅÁÆæÎ¬¿Ë-ÎÒÊÇÓÆÓÆ ", 10,165+40+10+40+10,380,380)
+   $myedit=GUICtrlCreateEdit("æœ¬è½¯ä»¶å¯ä»¥å®ç°å¤šå¼€é­”å…½ä¸–ç•Œ,å®ç°åŒæ—¶ç»ƒçº§åŠŸèƒ½ã€‚"& @CRLF & "å…·ä½“æ–‡æ¡£: https://www.yuque.com/u293649/hpg76f "& @CRLF & "ä½œè€…: äº”åŒº-å¸•å¥‡ç»´å…‹-æˆ‘æ˜¯æ‚ æ‚  ", 10,165+40+10+40+10,380,380)
 
 
   GUISetState()
 
    While 1
 	  Sleep(10)
-	  ;Î±Ôì°´¼ü·¢ËÍ
+	  ;ä¼ªé€ æŒ‰é”®å‘é€
 	  If $isStartGua == true Then
 		 Global $itemHanders
 		 Local $hWnd
@@ -172,6 +172,7 @@ GUICtrlSetOnEvent($BtnGua, "Guai")
 			$hWnd = $itemHanders[$i]
 			_WinAPI_PostMessage($hWnd,$WM_KEYUP, 32,0)
 			_WinAPI_PostMessage($hWnd,$WM_KEYDOWN, 32,0)
+			Sleep(60000)
 		 Next
 	  endIf
    WEnd
@@ -185,12 +186,12 @@ Func Addi()
 
 
 	if $isStartGua == true then
-				MsgBox(0, "¼üÅÌ¼àÌı",   "ÇëÏÈÍ£Ö¹¹Ò»ú")
+				MsgBox(0, "é”®ç›˜ç›‘å¬",   "è¯·å…ˆåœæ­¢æŒ‚æœº")
 		return 1
 	endIf
 
 	if $mainHander == -1 then
-				MsgBox(0, "¼üÅÌ¼àÌı",   "ĞèÒªÉèÖÃÖ÷´°Ìå")
+				MsgBox(0, "é”®ç›˜ç›‘å¬",   "éœ€è¦è®¾ç½®ä¸»çª—ä½“")
 		return 1
 	endIf
 
@@ -199,14 +200,14 @@ Func Addi()
 		Global $hModule = _WinAPI_GetModuleHandle(0)
 		Global $hHook = _WinAPI_SetWindowsHookEx($WH_KEYBOARD_LL, DllCallbackGetPtr($hCallback), $hModule)
 		$isStart = true
-		MsgBox(0, "¼üÅÌ¼àÌı",   "¿ªÆô³É¹¦")
-		GUICtrlSetData ( $BtnAdd ,"Í£Ö¹")
+		MsgBox(0, "é”®ç›˜ç›‘å¬",   "å¼€å¯æˆåŠŸ")
+		GUICtrlSetData ( $BtnAdd ,"åœæ­¢")
 	Else
 		_WinAPI_UnhookWindowsHookEx($hHook)
 		DllCallbackFree($hCallback)
 		$isStart = false
-		MsgBox(0, "¼üÅÌ¼àÌı",   "Í£Ö¹³É¹¦")
-		GUICtrlSetData ( $BtnAdd ,"Æô¶¯")
+		MsgBox(0, "é”®ç›˜ç›‘å¬",   "åœæ­¢æˆåŠŸ")
+		GUICtrlSetData ( $BtnAdd ,"å¯åŠ¨")
 
 	endIf
 
@@ -219,18 +220,18 @@ Func Guai()
 	Global $isStartGua
 	Global $BtnGua
 	if  $itemHanders[0] <= 0 then
-				MsgBox(0, "¹Ò»ú",   "Ã»·¢ÏÖÄ§ÊŞ´°¿Ú")
+				MsgBox(0, "æŒ‚æœº",   "æ²¡å‘ç°é­”å…½çª—å£")
 		return 1
 	endIf
 
 	if $isStartGua == False then
 		$isStartGua = True
-		MsgBox(0, "¹Ò»ú",   "¿ªÆô³É¹¦")
-		GUICtrlSetData ( $BtnGua ,"Í£Ö¹¹Ò»ú")
+		MsgBox(0, "æŒ‚æœº",   "å¼€å¯æˆåŠŸ")
+		GUICtrlSetData ( $BtnGua ,"åœæ­¢æŒ‚æœº")
 	Else
 		$isStartGua = False
-		MsgBox(0, "¹Ò»ú",   "Í£Ö¹³É¹¦")
-		GUICtrlSetData ( $BtnGua ,"Æô¶¯¹Ò»ú")
+		MsgBox(0, "æŒ‚æœº",   "åœæ­¢æˆåŠŸ")
+		GUICtrlSetData ( $BtnGua ,"å¯åŠ¨æŒ‚æœº")
 	endIf
 
 
@@ -243,7 +244,7 @@ Func SelectItem()
 	Global $mainLabel
   $sItem = GUICtrlRead(GUICtrlRead($listview))
   if $sItem == 0 then
-	  MsgBox(0, "ÉèÖÃÖ÷´°Ìå",   "ÄãÃ»ÓĞÑ¡ÔñÈÎºÎ´°Ìå")
+	  MsgBox(0, "è®¾ç½®ä¸»çª—ä½“",   "ä½ æ²¡æœ‰é€‰æ‹©ä»»ä½•çª—ä½“")
 	  return 1
   endIf
 
@@ -254,7 +255,7 @@ Func SelectItem()
 	$mainHander=$array[2]
 	GUICtrlSetData($mainLabel,$mainTitle & $mainHander)
 	WinActivate($mainHander)
-	  MsgBox(0, "ÉèÖÃÖ÷´°Ìå",   "ÉèÖÃ³É¹¦" & $itemHanders[0])
+	  MsgBox(0, "è®¾ç½®ä¸»çª—ä½“",   "è®¾ç½®æˆåŠŸ" & $itemHanders[0])
 
 EndFunc
 
